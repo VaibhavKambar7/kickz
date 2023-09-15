@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div
-      className={`flex text-black fixed top-0 bg-slate-500 left-0 w-full transition-transform duration-2000 ${
+      className={`flex text-black fixed top-0 bg-slate-100 left-0 w-full transition-transform duration-2000 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
