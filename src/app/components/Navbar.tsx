@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { BiChevronDown, BiCart, BiHeart } from "react-icons/bi";
 import DropdownMenu from "./Categories";
+import Wrapper from "./Wrapper";
 
 interface NavbarProps {}
 

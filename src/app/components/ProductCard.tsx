@@ -1,7 +1,19 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 
-const ProductCard: React.FC = () => {
+interface ProductCardProps {
+  productName: string;
+  price: number;
+  salePrice: number;
+  imageUrl: string;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  productName,
+  price,
+  salePrice,
+  imageUrl,
+}) => {
   return (
     <Link href="/product/1">
       <img
