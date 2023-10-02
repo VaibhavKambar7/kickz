@@ -2,7 +2,7 @@ import React from "react";
 import Wrapper from "../../components/Wrapper";
 import ProductCard from "../../components/ProductCard";
 
-const Category = () => {
+const Category: React.FC = () => {
   return (
     <Wrapper>
       <div className="text-center pt-[30px] max-w-[800px] mx-auto md:mt-[80px]">
@@ -19,63 +19,62 @@ const Category = () => {
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
+
         <ProductCard
           productName="Product Name"
           price={50.0}
           salePrice={40.0}
           imageUrl="/product-1.webp"
         />
-        
       </div>
     </Wrapper>
   );
