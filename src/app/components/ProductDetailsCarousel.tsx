@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const ProductDetailsCarousel: React.FC = () => {
   return (
-    <div className="py-[100px] my-[100px] text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
+    <div className="text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
       <Carousel
         infiniteLoop={true}
         showIndicators={false}
