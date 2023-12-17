@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href="/">
             <BiHeart className="text-[40px] hover:bg-gray-200 rounded-full p-2" />
           </Link>
-          <Link href="/">
+          <Link href="/cart">
             <BiCart className="text-[40px] hover:bg-gray-200 rounded-full p-2" />
           </Link>
         </div>
