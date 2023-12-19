@@ -16,7 +16,6 @@
 
     // Force consistent file naming case
     "forceConsistentCasingInFileNames": true,
-    "rootDir": "./src",
     "outDir": "./dist"
   }
 }
