@@ -1,4 +1,4 @@
-[
+export const products = [
   {
     name: "Air Jordan 1 Mid SE",
     subtitle: "Men's Shoes",
@@ -419,7 +419,7 @@
       "https://res.cloudinary.com/dotxtkk4n/image/upload/v1702914752/kickz/p6/thumbnail_syrsxc.webp",
     original_price: 24119,
     slug: "air-jordan-13-retro",
-    categories: ["Jordan", "Shoe"],
+    categories: ["Jordan", "Men's Shoes"],
   },
   {
     name: "Air Jordan 6 Retro",
