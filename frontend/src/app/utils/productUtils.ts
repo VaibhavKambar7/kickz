@@ -19,7 +19,7 @@ export interface FrontendProduct {
   categories: FrontendCategory[];
 }
 
-interface FrontendCategory {
+export interface FrontendCategory {
   id: number;
   name: string;
   slug: string;
