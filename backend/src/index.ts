@@ -4,16 +4,18 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import productRoute from "../routes/productRoute";
+import categoryRoute from "../routes/categoryRoute";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-const cors = require('cors')
-app.use(cors())
+const cors = require("cors");
+app.use(cors());
 
-app.use(express.json())
+app.use(express.json());
 
-app.use("/api/products",productRoute)
+app.use("/api/products", productRoute);
+app.use("/api/categories", categoryRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("hi there :)");
