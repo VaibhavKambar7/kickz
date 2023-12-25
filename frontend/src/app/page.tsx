@@ -1,8 +1,24 @@
 import HeroBanner from "./components/HeroBanner";
-import ProductCard from "./components/ProductCard";
+import ProductCard, { ProductCardProps } from "./components/ProductCard";
 import Wrapper from "./components/Wrapper";
 
-const Home: React.FC = () => {
+import { FrontendProduct } from "./utils/productUtils";
+
+async function fetchProducts() {
+  const response = await fetch("http://localhost:5000/api/products", {
+    cache: "force-cache",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return response.json();
+}
+
+const Home: React.FC = async ({}) => {
+  const products: FrontendProduct[] = await fetchProducts();
+
   return (
     <main>
       <HeroBanner />
@@ -19,61 +35,17 @@ const Home: React.FC = () => {
         </div>
 
         <div className="w-[1250px]"></div>
-        <div className="grid pt-[50px] gap-x-[2px] ml-[80px] gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-14 px-[55px] mb-[40px] md:px-0;">
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
-          <ProductCard
-            productName="Product Name"
-            price={50.0}
-            salePrice={40.0}
-            imageUrl="/product-1.webp"
-          />
+        <div className="grid pt-[50px] gap-x-[2px] ml-[80px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-14 px-[55px] mb-[40px] md:px-0;">
+          {products?.map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              original_price={product.original_price}
+              imageUrl={product.thumbnail}
+              slug={product.slug}
+            />
+          ))}
         </div>
       </Wrapper>
     </main>

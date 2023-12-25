@@ -33,58 +33,65 @@ const RelatedProducts: React.FC = () => {
         >
           <div>
             <ProductCard
-              productName="Product Name"
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
           <div>
-            <ProductCard
-              productName="Product Name"
+          <ProductCard
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
           <div>
-            <ProductCard
-              productName="Product Name"
+          <ProductCard
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
           <div>
-            <ProductCard
-              productName="Product Name"
+          <ProductCard
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
           <div>
-            <ProductCard
-              productName="Product Name"
+          <ProductCard
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
           <div>
-            <ProductCard
-              productName="Product Name"
+          <ProductCard
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
           <div>
-            <ProductCard
-              productName="Product Name"
+          <ProductCard
+              name="Product Name"
               price={50.0}
-              salePrice={40.0}
+              original_price={40.0}
               imageUrl="/product-1.webp"
+              slug="/products"
             />
           </div>
         </Carousel>

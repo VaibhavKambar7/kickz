@@ -1,31 +1,36 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
-interface ProductCardProps {
-  productName: string;
+export interface ProductCardProps {
+  name: string;
   price: number;
-  salePrice: number;
+  original_price: number;
   imageUrl: string;
+  slug: string
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  productName,
+  name,
   price,
-  salePrice,
+  original_price,
   imageUrl,
+  slug
 }) => {
   return (
-    <Link href="/product/1">
-      <img
+    <Link href={`/products/${slug}`}>
+      <Image
         className="w-[280px] h-[280px] pt-[30px] transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
-        src="/product-1.webp"
+        src={imageUrl}
         alt="Product Image"
+        width={280}
+        height={280}
       />
       <div className="p-4  text-black/[0.9] ">
-        <h2 className="mr-2 text-lg font-medium">Product Name</h2>
+        <h2 className="mr-2 text-lg font-medium">{name}</h2>
         <div className="flex items-center text-black/[0.5]">
-          <p className="mr-2 text-1g font-semibold">$20.00</p>
-          <p className="text-base font-medium line-through">$25.00</p>
+          <p className="mr-2 text-1g font-semibold">&#8377;{price}</p>
+          <p className="text-base font-medium line-through">&#8377;{original_price}</p>
           <p className="mr-[80px] ml-auto text-base font-medium text-green-500">
             20% off
           </p>
