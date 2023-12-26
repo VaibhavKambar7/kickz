@@ -42,7 +42,7 @@ const DropdownMenu = async () => {
       <button className="dropbtn flex items-center">
         Categories
         <BiChevronDown
-          className={`ml-7 transition-transform duration-300 ${
+          className={`center ml-7 transition-transform duration-300 ${
             open ? "transform rotate-180" : ""
           }`}
         />
@@ -50,7 +50,9 @@ const DropdownMenu = async () => {
       <ul className={`dropdown-content ${open ? "open" : ""}`}>
         {categories.map((category) => (
           <li key={category.id}>
-            <Link href={`/category/${category.slug}`}>{category.name}</Link>
+            <Link href={`/category/${category.slug}`}>
+              <div className="category-block">{category.name}</div>
+            </Link>
           </li>
         ))}
       </ul>

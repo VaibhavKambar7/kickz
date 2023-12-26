@@ -23,6 +23,8 @@ export interface FrontendCategory {
   id: number;
   name: string;
   slug: string;
+  products : FrontendProduct[];
+
 }
 
 // const transformBackendData = (backendData: any[]): FrontendProduct[] => {
