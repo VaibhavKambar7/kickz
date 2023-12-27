@@ -9,51 +9,57 @@ interface CategoryParams {
 }
 
 async function getCatProducts() {
-  const response = await fetch(`http://localhost:5000/api/categories`);
+  try {
+    const response = await fetch(`http://localhost:5000/api/categories`);
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data) || !data.length) {
+      throw new Error("Invalid data format");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error;
   }
-
-  return response.json();
 }
 
 export default async function Category({ params }: { params: CategoryParams }) {
   const categories = await getCatProducts();
   const { slug } = params;
 
-  //console.log(slugs)
+  const matchingCategory = categories.find(
+    (category: FrontendCategory) => category.slug === slug
+  );
 
   return (
     <Wrapper>
       <div className="text-center pt-[30px] max-w-[800px] mx-auto md:mt-[80px]">
         <div className="text-[20px] md:text-[28px] mb-5 font-bold leading-tight text-gray-900">
-          {categories.find(
-            (category: FrontendCategory) => category.slug === slug
-          )?.name ?? "Category Name"}
+          {matchingCategory?.name ?? "Category Name"}
         </div>
       </div>
 
       <div className="w-[1250px]"></div>
-      {categories.map(
-        (category: FrontendCategory) =>
-          category.slug === slug && (
-            <div
-              key={category.id}
-              className="grid gap-x-[2px] ml-[80px] gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-14 px-[55px] mb-[40px] md:px-0;"
-            >
-              {category.products.map((product: FrontendProduct) => (
-                <ProductCard
-                  key={product.id}
-                  name={product.name}
-                  price={product.price}
-                  original_price={product.original_price}
-                  imageUrl={product.thumbnail}
-                  slug={product.slug}
-                />
-              ))}
-            </div>
-          )
+
+      {matchingCategory && (
+        <div className="grid gap-x-[2px] ml-[80px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-14 px-[55px] mb-[40px] md:px-0;">
+          {matchingCategory?.products?.map((product: FrontendProduct) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              original_price={product.original_price}
+              imageUrl={product.thumbnail}
+              slug={product.slug}
+            />
+          ))}
+        </div>
       )}
     </Wrapper>
   );
