@@ -1,36 +1,16 @@
 import React from "react";
 import Wrapper from "../../components/Wrapper";
 import ProductCard from "../../components/ProductCard";
-import { FrontendCategory } from "@/app/utils/productUtils";
-import { FrontendProduct } from "@/app/utils/productUtils";
+import { FrontendCategory } from "@/app/interfaces/productCategoryInterface";
+import { FrontendProduct } from "@/app/interfaces/productCategoryInterface";
+import { fetchCategories } from "@/app/api/getCategories";
 
 interface CategoryParams {
   slug: string;
 }
 
-async function getCatProducts() {
-  try {
-    const response = await fetch(`http://localhost:5000/api/categories`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!Array.isArray(data) || !data.length) {
-      throw new Error("Invalid data format");
-    }
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    throw error;
-  }
-}
-
 export default async function Category({ params }: { params: CategoryParams }) {
-  const categories = await getCatProducts();
+  const categories = await fetchCategories();
   const { slug } = params;
 
   const matchingCategory = categories.find(

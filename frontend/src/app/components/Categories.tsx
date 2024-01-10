@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { BiChevronDown } from "react-icons/bi";
-import { FrontendCategory } from "../utils/productUtils";
+import { FrontendCategory } from "../interfaces/productCategoryInterface";
+import { fetchCategories } from "../api/getCategories";
 
-export const fetchCategories = async () => {
-  const response = await fetch("http://localhost:5000/api/categories");
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return response.json();
-};
-
-const DropdownMenu = async () => {
+const DropdownMenu = () => {
   const [open, setOpen] = useState(false);
+  const [categories, setCategories] = useState<FrontendCategory[]>([]);
 
-  const categories: FrontendCategory[] = await fetchCategories();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedCategories = await fetchCategories();
+        setCategories(fetchedCategories);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  // const categories = [
-  //   { id: 1, name: "Jordan", doc_count: 11 },
-  //   { id: 2, name: "Sneakers", doc_count: 8 },
-  //   { id: 3, name: "Running shoes", doc_count: 64 },
-  //   { id: 4, name: "Football shoes", doc_count: 107 },
-  // ];
+    fetchData();
+  }, []);
 
   const handleMouseEnter = () => {
     setOpen(true);
@@ -50,9 +48,7 @@ const DropdownMenu = async () => {
       <ul className={`dropdown-content ${open ? "open" : ""}`}>
         {categories.map((category) => (
           <li key={category.id}>
-            <Link href={`/category/${category.slug}`}>
-              <div className="category-block">{category.name}</div>
-            </Link>
+            <Link href={`/category/${category.slug}`}>{category.name}</Link>
           </li>
         ))}
       </ul>

@@ -1,26 +1,18 @@
 import HeroBanner from "./components/HeroBanner";
-import ProductCard, { ProductCardProps } from "./components/ProductCard";
+import ProductCard from "./components/ProductCard";
 import Wrapper from "./components/Wrapper";
 
-import { FrontendProduct } from "./utils/productUtils";
+import { FrontendProduct } from "./interfaces/productCategoryInterface";
 
-async function fetchProducts() {
-  const response = await fetch("http://localhost:5000/api/products", {
+const Home: React.FC = async ({}) => {
+  const response = await fetch(`http://localhost:5000/api/products`, {
     cache: "force-cache",
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return response.json();
-}
-
-const Home: React.FC = async ({}) => {
-  const products: FrontendProduct[] = await fetchProducts();
+  const products: FrontendProduct[] = await response.json();
 
   return (
-    <main>
+    <div>
       <HeroBanner />
       <Wrapper>
         <div className="text-center pt-[50px] max-w-[800px] mx-auto my-[50px] md:my-[80px]">
@@ -48,7 +40,7 @@ const Home: React.FC = async ({}) => {
           ))}
         </div>
       </Wrapper>
-    </main>
+    </div>
   );
 };
 

@@ -1,7 +1,8 @@
-/** @type {import('next').NextConfig} */
+//  @type {import('next').NextConfig} 
 module.exports = {
   experimental: {
     appDir: true,
+    //serverActions: true,
   },
   reactStrictMode: true,
   eslint: {

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { BiChevronDown, BiCart, BiHeart } from "react-icons/bi";
@@ -54,9 +55,9 @@ const Navbar: React.FC<NavbarProps> = () => {
             <Link href="/about">About</Link>
           </li>
           <li className="px-4 py-5">
-            <Link href="/">
-              <DropdownMenu />
-            </Link>
+            <DropdownMenu />
+            {/* <Link href="/">
+            </Link> */}
           </li>
           <li className="px-4 py-5 mr-[5px] md:mr-[125px]">
             <Link href="/contact">Contact</Link>
@@ -78,3 +79,4 @@ const Navbar: React.FC<NavbarProps> = () => {
 };
 
 export default Navbar;
+

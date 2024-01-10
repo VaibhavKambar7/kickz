@@ -1,11 +1,15 @@
-"use client";
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import Carousel from "../utils/responsiveCarousel";
 
-const ProductDetailsCarousel: React.FC = () => {
+interface ProductDetailsCarouselProps {
+  images: string[];
+}
+
+const ProductDetailsCarousel: React.FC<ProductDetailsCarouselProps> = ({
+  images,
+}) => {
   return (
-    <div className="text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
+    <div className="py-[100px] my-[100px] text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
       <Carousel
         infiniteLoop={true}
         showIndicators={false}
@@ -13,12 +17,16 @@ const ProductDetailsCarousel: React.FC = () => {
         thumbWidth={60}
         className="productCarousel"
       >
-        <img src="/p2.png" />
+        {/* <img src="/p2.png" />
         <img src="/p3.png" />
         <img src="/p4.png" />
         <img src="/p5.png" />
         <img src="/p6.png" />
-        <img src="/p7.png" />
+        <img src="/p7.png" /> */}
+
+        {images?.map((imageUrl) => (
+          <img key={imageUrl} src={imageUrl} />
+        ))}
       </Carousel>
     </div>
   );
