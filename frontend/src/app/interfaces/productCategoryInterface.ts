@@ -6,10 +6,10 @@ export interface SizeData {
 export interface FrontendProduct {
   id: number;
   name: string;
-  subtitle: string;
+  subtitle?: string;
   price: number;
   description: string;
-  size: SizeData[];
+  size?: SizeData[];
   images: string[];
   thumbnail: string;
   original_price: number;
@@ -21,5 +21,5 @@ export interface FrontendCategory {
   id: number;
   name: string;
   slug: string;
-  products: FrontendProduct[];
+  products?: FrontendProduct[];
 }

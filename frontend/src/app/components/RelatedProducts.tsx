@@ -38,7 +38,7 @@ const RelatedProducts: React.FC = () => {
             />
           </div>
           <div>
-          <ProductCard
+            <ProductCard
               name="Product Name"
               price={50.0}
               original_price={40.0}
@@ -47,7 +47,7 @@ const RelatedProducts: React.FC = () => {
             />
           </div>
           <div>
-          <ProductCard
+            <ProductCard
               name="Product Name"
               price={50.0}
               original_price={40.0}
@@ -56,7 +56,7 @@ const RelatedProducts: React.FC = () => {
             />
           </div>
           <div>
-          <ProductCard
+            <ProductCard
               name="Product Name"
               price={50.0}
               original_price={40.0}
@@ -65,7 +65,7 @@ const RelatedProducts: React.FC = () => {
             />
           </div>
           <div>
-          <ProductCard
+            <ProductCard
               name="Product Name"
               price={50.0}
               original_price={40.0}
@@ -74,7 +74,7 @@ const RelatedProducts: React.FC = () => {
             />
           </div>
           <div>
-          <ProductCard
+            <ProductCard
               name="Product Name"
               price={50.0}
               original_price={40.0}
@@ -83,7 +83,7 @@ const RelatedProducts: React.FC = () => {
             />
           </div>
           <div>
-          <ProductCard
+            <ProductCard
               name="Product Name"
               price={50.0}
               original_price={40.0}

@@ -3,7 +3,8 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Providers from "./providers";
+import ProductProviders from "./provider";
+import { ReduxProvider } from "./redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,13 +27,15 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         <meta name="description" content={metadata.description} />
       </head>
       <body className={inter.className}>
-        <Providers>
-          <div className="navbar">
-            <Navbar />
-          </div>
-          <div>{children}</div>
-          <Footer />
-        </Providers>
+        <ReduxProvider>
+          <ProductProviders>
+            <div className="navbar">
+              <Navbar />
+            </div>
+            <div>{children}</div>
+            <Footer />
+          </ProductProviders>
+        </ReduxProvider>
       </body>
     </html>
   );

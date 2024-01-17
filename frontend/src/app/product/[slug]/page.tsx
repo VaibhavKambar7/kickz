@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import ProductDetails from "./products";
-import getProducts from "@/app/api/getProducts";
+import getProducts from "@/app/utils/getProducts";
 
 export default async function PostsPage() {
   const queryClient = new QueryClient();

@@ -3,7 +3,7 @@ import Wrapper from "../../components/Wrapper";
 import ProductCard from "../../components/ProductCard";
 import { FrontendCategory } from "@/app/interfaces/productCategoryInterface";
 import { FrontendProduct } from "@/app/interfaces/productCategoryInterface";
-import { fetchCategories } from "@/app/api/getCategories";
+import { fetchCategories } from "@/app/utils/getCategories";
 
 interface CategoryParams {
   slug: string;

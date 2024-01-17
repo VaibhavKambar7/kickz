@@ -37,9 +37,7 @@ const CartItem = ({}) => {
           <div className="flex items-center gap-2 md:gap-10 text-black/[0.5] text-sm md:text-md">
             <div className="flex items-center gap-1">
               <div className="font-semibold">Size:</div>
-              <select
-                className="hover:text-black"
-              >
+              <select className="hover:text-black">
                 <option value="1">UK 6</option>
                 <option value="1">UK 6</option>
                 <option value="1">UK 6</option>
@@ -53,10 +51,7 @@ const CartItem = ({}) => {
 
             <div className="flex items-center gap-1">
               <div className="font-semibold">Quantity:</div>
-              <select
-                className="hover:text-black"
-                // onChange={(e) => updateCartItem(e, "quantity")}
-              >
+              <select className="hover:text-black">
                 <option value="1">1</option>
                 <option value="1">1</option>
                 <option value="1">1</option>
@@ -70,12 +65,7 @@ const CartItem = ({}) => {
               </select>
             </div>
           </div>
-          <RiDeleteBin6Line
-            // onClick={() =>
-            //     dispatch(removeFromCart({ id: data.id }))
-            // }
-            className="cursor-pointer text-black/[0.5] hover:text-black text-[16px] md:text-[20px]"
-          />
+          <RiDeleteBin6Line className="cursor-pointer text-black/[0.5] hover:text-black text-[16px] md:text-[20px]" />
         </div>
       </div>
     </div>

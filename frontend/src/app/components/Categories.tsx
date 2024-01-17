@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { BiChevronDown } from "react-icons/bi";
 import { FrontendCategory } from "../interfaces/productCategoryInterface";
-import { fetchCategories } from "../api/getCategories";
+import { fetchCategories } from "../utils/getCategories";
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState(false);

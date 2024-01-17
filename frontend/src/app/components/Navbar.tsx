@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { BiChevronDown, BiCart, BiHeart } from "react-icons/bi";
+import { BiCart, BiHeart } from "react-icons/bi";
 import DropdownMenu from "./Categories";
-import Wrapper from "./Wrapper";
+import { useAppSelector } from "../redux/store";
 
 interface NavbarProps {}
 
@@ -12,6 +12,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
 
+  const cartx = useAppSelector((state) => state.cartReducer.cart);
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
     if (window.scrollY > 50) {
@@ -56,8 +57,6 @@ const Navbar: React.FC<NavbarProps> = () => {
           </li>
           <li className="px-4 py-5">
             <DropdownMenu />
-            {/* <Link href="/">
-            </Link> */}
           </li>
           <li className="px-4 py-5 mr-[5px] md:mr-[125px]">
             <Link href="/contact">Contact</Link>
@@ -71,6 +70,11 @@ const Navbar: React.FC<NavbarProps> = () => {
           </Link>
           <Link href="/cart">
             <BiCart className="text-[40px] hover:bg-gray-200 rounded-full p-2" />
+            {cartx.length > 0 && (
+              <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                {cartx.length}
+              </div>
+            )}
           </Link>
         </div>
       </div>
@@ -79,4 +83,3 @@ const Navbar: React.FC<NavbarProps> = () => {
 };
 
 export default Navbar;
-

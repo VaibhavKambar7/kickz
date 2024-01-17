@@ -10,14 +10,31 @@ import { useParams } from "next/navigation";
 import Wrapper from "@/app/components/Wrapper";
 import { BiHeart } from "react-icons/bi";
 import ProductDetailsCarousel from "@/app/components/ProductDetailsCarousel";
-import getProducts from "@/app/api/getProducts";
+import getProducts from "@/app/utils/getProducts";
 import ReactMarkdown from "react-markdown";
+import { addToCart } from "@/app/redux/features/cart-slice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useAppDispatch } from "@/app/redux/store";
 
 export default function ProductDetails() {
   const params = useParams();
 
   const [selectedSize, setSelectedSize] = useState("");
   const [showError, setShowError] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const notify = () => {
+    toast.success("Success. Check your cart!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   const { slug } = params;
 
@@ -34,10 +51,11 @@ export default function ProductDetails() {
     return <div>Error fetching product details: {error.message}</div>;
   }
 
-  const matchedProduct = data.find((p: FrontendProduct) => p.slug === slug)!;
+  const matchedProduct = data.find((p: FrontendProduct) => p.slug === slug);
 
   return (
     <div className="w-full md:pg-20">
+      <ToastContainer />
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
           <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
@@ -108,6 +126,15 @@ export default function ProductDetails() {
                     block: "center",
                     behavior: "smooth",
                   });
+                } else {
+                  dispatch(
+                    addToCart({
+                      ...matchedProduct,
+                      selectedSize,
+                      oneQuantityPrice: matchedProduct.price,
+                    })
+                  );
+                  notify();
                 }
               }}
             >

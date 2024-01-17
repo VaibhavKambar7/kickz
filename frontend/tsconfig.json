@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/category/[slug]/products.tsx"
+    "src/app/category/[slug]/products.tsx",
+    "src/app/redux/features/cart-slice.ts"
   ],
   "exclude": ["node_modules"]
 }
