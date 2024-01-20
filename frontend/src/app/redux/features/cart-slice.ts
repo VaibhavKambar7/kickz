@@ -5,7 +5,7 @@ type SizeData = {
   enabled: boolean;
 };
 
-type CartItem = {
+export type CartItemType = {
   id: number;
   name: string;
   price: number;
@@ -28,7 +28,7 @@ type CartItem = {
 };
 
 export type CartState = {
-  cart: CartItem[];
+  cart: CartItemType[];
 };
 
 const initialState: CartState = {
@@ -49,8 +49,24 @@ export const cartSlice = createSlice({
         state.cart.push({ ...action.payload, quantity: 1 });
       }
     },
+    updateCart: (state, action) => {
+      state.cart = state.cart.map((p) => {
+        if (p.id === action.payload.id) {
+          if (action.payload.key === "quantity") {
+            p.price = p.oneQuantityPrice * action.payload.val;
+          }
+          return { ...p, [action.payload.key]: action.payload.val };
+        }
+        return p;
+      });
+    },
+    removeFromCart: (state, action) => {
+      state.cart = state.cart.filter((p) => {
+        return p.id !== action.payload.id;
+      });
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
