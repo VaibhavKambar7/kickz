@@ -4,7 +4,13 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import ProductProviders from "./provider";
-import { ReduxProvider } from "./redux/provider";
+import dynamic from "next/dynamic";
+
+const PersistedReduxProvider = dynamic(() => import("../app/redux/provider"), {
+  ssr: false,
+});
+
+// import  PersistedReduxProvider from "../app/redux/provider"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +33,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         <meta name="description" content={metadata.description} />
       </head>
       <body className={inter.className}>
-        <ReduxProvider>
+        <PersistedReduxProvider>
           <ProductProviders>
             <div className="navbar">
               <Navbar />
@@ -35,7 +41,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
             <div>{children}</div>
             <Footer />
           </ProductProviders>
-        </ReduxProvider>
+        </PersistedReduxProvider>
       </body>
     </html>
   );
