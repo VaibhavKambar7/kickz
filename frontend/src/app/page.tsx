@@ -5,7 +5,9 @@ import Wrapper from "./components/Wrapper";
 import { FrontendProduct } from "./interfaces/productCategoryInterface";
 
 const Home: React.FC = async ({}) => {
-  const response = await fetch(`http://localhost:5000/api/products`, {
+  const apiURL = process.env.NEXT_PUBLIC_API_URL;
+
+  const response = await fetch(`${apiURL}/api/products`, {
     cache: "force-cache",
   });
 
@@ -13,7 +15,16 @@ const Home: React.FC = async ({}) => {
 
   return (
     <div>
-      <HeroBanner />
+      <div
+        className="bg-cover h-558 w-full"
+        style={{
+          backgroundImage:
+            "url('https://res.cloudinary.com/dotxtkk4n/image/upload/v1708936579/kickz/herobanner_bg/bg_nvgxfv.jpg')",
+        }}
+      >
+        <HeroBanner />
+      </div>
+
       <Wrapper>
         <div className="text-center pt-[50px] max-w-[800px] mx-auto my-[50px] md:my-[80px]">
           <div className="text-[20px] md:text-[28px] mb-5 font-bold leading-tight text-gray-900">

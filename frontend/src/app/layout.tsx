@@ -1,16 +1,15 @@
-import React, { ReactNode } from "react";
+"use client";
+
+import React, { ReactNode, Suspense } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import ProductProviders from "./provider";
-import dynamic from "next/dynamic";
-
-const PersistedReduxProvider = dynamic(() => import("../app/redux/provider"), {
-  ssr: false,
-});
-
-// import  PersistedReduxProvider from "../app/redux/provider"
+import { usePathname } from "next/navigation";
+import AuthProvider from "./(auth)/providers";
+import Loading from "./loading";
+import CartProvider from "./context/cartProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +23,8 @@ interface RootLayoutProps {
 }
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
       <head>
@@ -33,15 +34,25 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         <meta name="description" content={metadata.description} />
       </head>
       <body className={inter.className}>
-        <PersistedReduxProvider>
+        <AuthProvider>
           <ProductProviders>
-            <div className="navbar">
-              <Navbar />
-            </div>
-            <div>{children}</div>
-            <Footer />
+            <CartProvider>
+              <div className="navbar">
+                {pathname !== "/register" &&
+                  pathname !== "/login" &&
+                  pathname !== "/success" &&
+                  pathname !== "/failed" && <Navbar />}
+              </div>
+              <Suspense fallback={<Loading />}>
+                <div>{children}</div>
+              </Suspense>
+              {pathname !== "/register" &&
+                pathname !== "/login" &&
+                pathname !== "/success" &&
+                pathname !== "/failed" && <Footer />}
+            </CartProvider>
           </ProductProviders>
-        </PersistedReduxProvider>
+        </AuthProvider>
       </body>
     </html>
   );

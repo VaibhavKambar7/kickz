@@ -1,23 +1,26 @@
 import Image from "next/image";
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { CartItemType } from "../redux/features/cart-slice";
-import { updateCart, removeFromCart } from "../redux/features/cart-slice";
-import { useAppDispatch } from "../redux/store";
 
-const CartItem = ({ data }: { data: CartItemType }) => {
-  const dispatch = useAppDispatch();
+type CartItemProps = {
+  data: any;
+  removeFromCart: (id: any) => Promise<void>;
+};
+
+const CartItem: React.FC<CartItemProps> = ({ data, removeFromCart }) => {
+  const handleDelete = async () => {
+    await removeFromCart(data.id);
+  };
 
   const updateCartItem = (
     e: React.ChangeEvent<HTMLSelectElement>,
     key: string
   ) => {
-    let payload = {
+    const payload = {
       key,
       val: key === "quantity" ? parseInt(e.target.value) : e.target.value,
       id: data.id,
     };
-    dispatch(updateCart(payload));
   };
 
   return (
@@ -58,7 +61,7 @@ const CartItem = ({ data }: { data: CartItemType }) => {
                 className="hover:text-black"
                 onChange={(e) => updateCartItem(e, "selectedSize")}
               >
-                {data.size.data.map((item, i) => {
+                {data.size.data.map((item: any, i: any) => {
                   return (
                     <option
                       key={i}
@@ -78,19 +81,18 @@ const CartItem = ({ data }: { data: CartItemType }) => {
               <select
                 className="hover:text-black"
                 onChange={(e) => updateCartItem(e, "quantity")}
+                value={data.quantity}
               >
-                {Array.from({ length: 10 }, (_, i) => i + 1).map((q, i) => {
-                  return (
-                    <option key={i} value={q} selected={data.quantity === q}>
-                      {q}
-                    </option>
-                  );
-                })}
+                {Array.from({ length: 10 }, (_, i) => i + 1).map((q, i) => (
+                  <option key={i} value={q}>
+                    {q}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
           <RiDeleteBin6Line
-            onClick={() => dispatch(removeFromCart({ id: data.id }))}
+            onClick={handleDelete}
             className="cursor-pointer text-black/[0.5] hover:text-black text-[16px] md:text-[20px]"
           />
         </div>

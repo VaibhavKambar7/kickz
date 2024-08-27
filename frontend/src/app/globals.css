@@ -122,3 +122,39 @@
     margin: 0;
   }
 }
+
+.name {
+  margin-top: 8.5rem;
+}
+.productimage {
+  margin-top: -7rem;
+}
+
+.cartnumber {
+  position: absolute;
+  right: 11rem;
+}
+
+.spinner-ring {
+  display: inline-block;
+  width: 84px;
+  height: 84px;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-container {
+  width: 100px; 
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
