@@ -1,5 +1,5 @@
+import { type Category, PrismaClient } from "@prisma/client";
 import { products } from "../seedData/products";
-import { PrismaClient, Category } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -28,7 +28,7 @@ async function seedProduct() {
 }
 
 async function fetchOrCreateCategories(
-  categoryNames: string[]
+  categoryNames: string[],
 ): Promise<Category[]> {
   const existingCategories = await prisma.category.findMany({
     where: {
@@ -39,7 +39,7 @@ async function fetchOrCreateCategories(
   });
 
   const categoryNamesToCreate = categoryNames.filter(
-    (name) => !existingCategories.some((c) => c.name === name)
+    (name) => !existingCategories.some((c: any) => c.name === name),
   );
 
   if (categoryNamesToCreate.length > 0) {

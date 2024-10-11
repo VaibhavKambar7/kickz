@@ -14,7 +14,7 @@ const CartItem: React.FC<CartItemProps> = ({ data, removeFromCart }) => {
 
   const updateCartItem = (
     e: React.ChangeEvent<HTMLSelectElement>,
-    key: string
+    key: string,
   ) => {
     const payload = {
       key,

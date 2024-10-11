@@ -24,9 +24,7 @@ const ProductDetailsCarousel: React.FC<ProductDetailsCarouselProps> = ({
         <img src="/p6.png" />
         <img src="/p7.png" /> */}
 
-        {images?.map((imageUrl) => (
-          <img key={imageUrl} src={imageUrl} />
-        ))}
+        {images?.map((imageUrl) => <img key={imageUrl} src={imageUrl} />)}
       </Carousel>
     </div>
   );

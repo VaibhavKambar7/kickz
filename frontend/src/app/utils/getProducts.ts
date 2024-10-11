@@ -1,5 +1,4 @@
 export default async function getProducts() {
-
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   try {

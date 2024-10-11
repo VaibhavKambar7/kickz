@@ -1,5 +1,4 @@
 export const getAllUsers = async () => {
-
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   try {

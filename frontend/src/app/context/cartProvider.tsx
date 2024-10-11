@@ -21,7 +21,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const useLocalStorage = <T extends unknown>(
   key: string,
-  initialValue: T
+  initialValue: T,
 ): [T, React.Dispatch<React.SetStateAction<T>>] => {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
@@ -50,7 +50,7 @@ const useLocalStorage = <T extends unknown>(
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useLocalStorage<CartItemType[]>(
     "cartItems",
-    []
+    [],
   );
 
   return (

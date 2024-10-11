@@ -14,7 +14,7 @@ export default async function Category({ params }: { params: CategoryParams }) {
   const { slug } = params;
 
   const matchingCategory = categories.find(
-    (category: FrontendCategory) => category.slug === slug
+    (category: FrontendCategory) => category.slug === slug,
   );
 
   return (

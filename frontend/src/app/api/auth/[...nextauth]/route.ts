@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import dotenv from "dotenv";
 import { getAllUsers } from "@/app/utils/getAllUsers";
-import bcrypt from "bcryptjs";
+import bcryptjs from "bcryptjs";
 dotenv.config();
 
 export const authOptions: NextAuthOptions = {
@@ -19,13 +19,13 @@ export const authOptions: NextAuthOptions = {
 
         const users = await getAllUsers();
         const user = users.users.find(
-          (item: any) => item.email === credentials.email
+          (item: any) => item.email === credentials.email,
         );
         if (user) {
           console.log("found user");
-          const passwordMatch = await bcrypt.compare(
+          const passwordMatch = await bcryptjs.compare(
             credentials.password,
-            user.hashedPassword
+            user.hashedPassword,
           );
           if (!passwordMatch) {
             return null;

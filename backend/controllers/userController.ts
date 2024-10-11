@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -12,7 +12,7 @@ const registerUser = async (req: Request, res: Response) => {
       return res.status(422).json({ message: "Invalid Data" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     const user = await prisma.user.create({
       data: { name, email, hashedPassword },
     });

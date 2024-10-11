@@ -41,7 +41,7 @@ const Cart: React.FC = () => {
 
       const response = await fetch(
         `${apiURL}/api/payment/create-checkout-session`,
-        { method: "POST", headers: headers, body: JSON.stringify(body) }
+        { method: "POST", headers: headers, body: JSON.stringify(body) },
       );
 
       const sessionData = await response.json();

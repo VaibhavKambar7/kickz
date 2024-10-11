@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -82,21 +81,18 @@ export default function ProductDetails() {
 
     try {
       setLoading(true);
-      const response = await fetch(
-        `${apiURL}/api/cart/updateCartItem`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            matchedProduct,
-            selectedSize,
-            quantity: 1,
-            userEmail: session?.user?.email,
-          }),
-        }
-      );
+      const response = await fetch(`${apiURL}/api/cart/updateCartItem`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          matchedProduct,
+          selectedSize,
+          quantity: 1,
+          userEmail: session?.user?.email,
+        }),
+      });
 
       if (response.ok) {
         notify();
@@ -114,7 +110,7 @@ export default function ProductDetails() {
               quantity: 1,
               userEmail: session?.user?.email,
             }),
-          }
+          },
         );
 
         if (createResponse.ok) {

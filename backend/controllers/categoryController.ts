@@ -11,11 +11,11 @@ async function getCategories(req: Request, res: Response) {
       },
     });
 
-    const formattedCategories = categories.map((category) => ({
+    const formattedCategories = categories.map((category: any) => ({
       id: category.id,
       name: category.name,
       slug: category.slug,
-      products: category.products.map((product) => ({
+      products: category.products.map((product: any) => ({
         id: product.id,
         name: product.name,
         price: product.price,

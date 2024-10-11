@@ -11,7 +11,7 @@ async function getProducts(req: Request, res: Response) {
       },
     });
 
-    const formattedProducts = products.map((product) => ({
+    const formattedProducts = products.map((product: any) => ({
       id: product.id,
       name: product.name,
       price: product.price,
@@ -21,7 +21,7 @@ async function getProducts(req: Request, res: Response) {
       thumbnail: product.thumbnail,
       original_price: product.original_price,
       slug: product.slug,
-      categories: product.categories.map((category) => ({
+      categories: product.categories.map((category: any) => ({
         id: category.id,
         name: category.name,
         slug: category.slug,

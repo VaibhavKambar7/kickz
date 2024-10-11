@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({ userEmail: userEmail }),
-            }
+            },
           );
           if (!response.ok) {
             throw new Error("Failed to fetch cart items");

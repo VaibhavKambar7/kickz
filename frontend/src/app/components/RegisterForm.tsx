@@ -74,12 +74,12 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     if (!name || !email || !password) {
       setError("All fields are necessary. *");
       return;
     }
-  
+
     try {
       const resUserExists = await fetch(`${apiURL}/api/user/userExists`, {
         method: "POST",
@@ -88,18 +88,18 @@ export default function RegisterForm() {
         },
         body: JSON.stringify({ email }),
       });
-  
+
       if (!resUserExists.ok) {
         throw new Error("Failed to check if user exists. *");
       }
-  
+
       const { user } = await resUserExists.json();
-  
+
       if (user) {
         setError("User already exists. *");
         return;
       }
-  
+
       const res = await fetch(`${apiURL}/api/user/register`, {
         method: "POST",
         headers: {
@@ -111,23 +111,23 @@ export default function RegisterForm() {
           password,
         }),
       });
-  
+
       if (!res.ok) {
         throw new Error("Failed to register user.");
       }
-  
+
       // Automatically sign in the user after registration
       const signInResponse = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
-  
+
       if (signInResponse && !signInResponse.error) {
         // Update the session with the newly registered user
         router.replace("/");
       }
-  
+
       setName("");
       setEmail("");
       setPassword("");
@@ -137,7 +137,6 @@ export default function RegisterForm() {
       setError("Registration failed. Please try again later. *");
     }
   };
-  
 
   return (
     <div className="flex justify-center items-center h-screen">

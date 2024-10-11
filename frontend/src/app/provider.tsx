@@ -16,7 +16,7 @@ export default function ProductProviders({
             staleTime: 60 * 1000,
           },
         },
-      })
+      }),
   );
 
   return (
